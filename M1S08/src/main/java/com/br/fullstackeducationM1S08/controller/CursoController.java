@@ -8,11 +8,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("cursos")
-public class CursosController {
+public class CursoController {
+
+    private final CursoService cursoService;
+
+    public CursoController(CursoService cursoService) {
+        this.cursoService = cursoService;
+    }
 
     @GetMapping
     public List<CursoEntity> get() {
-        return CursoService.getCursos();
+        return CursoService.buscarTodos();
     }
 
     @GetMapping("{id}")

@@ -1,7 +1,10 @@
 package com.br.fullstackeducationM1S08.service;
 
+import com.br.fullstackeducationM1S08.entity.AlunoEntity;
 import com.br.fullstackeducationM1S08.entity.CursoEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CursoService extends CursoEntity {
@@ -33,6 +36,10 @@ public class CursoService extends CursoEntity {
     public static boolean deletar(Integer id) throws Exception {
         CursoEntity curso = buscarPorId(id);
         return CursoEntity.deletar(curso);
+    }
+
+    public static List<CursoEntity> buscarTodos() {
+        return CursoEntity.getCursos();
     }
 
     public static CursoEntity buscarPorId(Integer id) throws Exception {

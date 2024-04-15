@@ -3,6 +3,7 @@ package com.br.fullstackeducationM1S08.controller;
 import com.br.fullstackeducationM1S08.entity.AlunoEntity;
 import com.br.fullstackeducationM1S08.entity.CursoEntity;
 import com.br.fullstackeducationM1S08.service.AlunoService;
+import com.br.fullstackeducationM1S08.service.CursoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,9 +12,15 @@ import java.util.List;
 @RequestMapping("/")
 public class AlunoController {
 
+    private final AlunoService alunoService;
+
+    public AlunoController(AlunoService alunoService) {
+        this.alunoService = alunoService;
+    }
+
     @GetMapping
     public List<AlunoEntity> get() {
-        return AlunoEntity.getAlunos();
+        return AlunoService.buscarTodos();
     }
 
     @GetMapping("{id}")
