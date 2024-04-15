@@ -1,6 +1,7 @@
 package com.br.fullstackeducationM1S08.controller;
 
 import com.br.fullstackeducationM1S08.entity.CursoEntity;
+import com.br.fullstackeducationM1S08.service.CursoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,28 +12,28 @@ public class CursosController {
 
     @GetMapping
     public List<CursoEntity> get() {
-        return CursoEntity.getCursos();
+        return CursoService.getCursos();
     }
 
     @GetMapping("{id}")
     public CursoEntity getId(@PathVariable Integer id) throws Exception {
-        return CursoEntity.buscarPorId(id);
+        return CursoService.buscarPorId(id);
     }
 
     @PostMapping
     public CursoEntity post(@RequestBody CursoEntity curso) throws Exception {
-        return CursoEntity.armazenar(curso);
+        return CursoService.armazenar(curso);
     }
 
     @PutMapping
     public CursoEntity put(@PathVariable Integer id, @RequestBody CursoEntity curso) throws Exception {
 
-        return CursoEntity.armazenar(id, curso);
+        return CursoService.armazenar(id, curso);
     }
 
     @DeleteMapping("{id}")
     public boolean delete(@PathVariable Integer id) throws Exception {
-        return CursoEntity.deletar(id);
+        return CursoService.deletar(id);
     }
 
 }

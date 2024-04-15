@@ -22,39 +22,14 @@ public class CursoEntity {
 
     private Integer cargaHoraria;
 
-    public static CursoEntity armazenar(CursoEntity curso) throws Exception {
-
-        if (validacao(curso)) {
-                curso.id = proximoId++;
-                cursos.add(curso);
-            }
+    public static CursoEntity criar(CursoEntity curso) {
+        curso.id = proximoId ++;
+        cursos.add(curso);
         return curso;
     }
 
-
-    public static CursoEntity armazenar(Integer id, CursoEntity curso) throws Exception {
-
-        if (validacao(curso)) {
-
-                CursoEntity cursoArmazenado = buscarPorId(id);
-                cursoArmazenado.setNome(curso.getNome());
-                cursoArmazenado.setDescricao(cursoArmazenado.getDescricao());
-                cursoArmazenado.setCargaHoraria(cursoArmazenado.getCargaHoraria());
-
-            return cursoArmazenado;
-
-        }
-        return null;
-    }
-
-    public static boolean deletar(Integer id) throws Exception {
-        CursoEntity curso = buscarPorId(id);
-        cursos.remove(curso);
-        return true;
-    }
-
     public static CursoEntity buscarPorId(Integer id) throws Exception {
-        for (CursoEntity curso : cursos) {
+        for (CursoEntity curso : getCursos()) {
             if (curso.getId().equals(id)) {
                 return curso;
             }
@@ -63,13 +38,8 @@ public class CursoEntity {
         return buscarPorId(id);
     }
 
-    private static boolean validacao(CursoEntity curso) throws Exception {
-        if (curso.getNome() == null || curso.getNome().isEmpty()) {
-            throw new Exception("Nome é obrigatório!");
-        }
-        if (curso.getCargaHoraria() == null || curso.getCargaHoraria() < 80) {
-            throw new Exception("Carga não informada ou inválida!");
-        }
+    public static boolean deletar (CursoEntity curso) {
+        cursos.remove(curso);
         return true;
     }
 
