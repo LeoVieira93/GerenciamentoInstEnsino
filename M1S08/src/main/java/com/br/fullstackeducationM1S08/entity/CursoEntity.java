@@ -15,12 +15,10 @@ public class CursoEntity {
     private static List<CursoEntity> cursos = new ArrayList<>();
 
     private Integer id;
-
     private String nome;
-
     private String descricao;
-
     private Integer cargaHoraria;
+    private List<AlunoEntity> alunosRegistrados = new ArrayList<>();
 
     public static CursoEntity criar(CursoEntity curso) {
         curso.id = proximoId ++;
@@ -41,6 +39,10 @@ public class CursoEntity {
     public static boolean deletar (CursoEntity curso) {
         cursos.remove(curso);
         return true;
+    }
+
+    public static void matricular (CursoEntity curso, AlunoEntity aluno) {
+        curso.getAlunosRegistrados().add(aluno);
     }
 
 }

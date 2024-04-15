@@ -9,6 +9,12 @@ import java.util.List;
 @Service
 public class CursoService extends CursoEntity {
 
+    private final AlunoService alunoService;
+
+    public CursoService(AlunoService alunoService) {
+        this.alunoService = alunoService;
+    }
+
     public static CursoEntity armazenar(CursoEntity curso) throws Exception {
 
         if (validacao(curso)) {
@@ -16,7 +22,6 @@ public class CursoService extends CursoEntity {
         }
         return curso;
     }
-
 
     public static CursoEntity armazenar(Integer id, CursoEntity curso) throws Exception {
 
@@ -44,6 +49,13 @@ public class CursoService extends CursoEntity {
 
     public static CursoEntity buscarPorId(Integer id) throws Exception {
         return CursoEntity.buscarPorId(id);
+    }
+
+    public CursoEntity matricularAluno(Integer id, Integer alunoId) throws Exception {
+        CursoEntity curso = buscarPorId(id);
+        AlunoEntity aluno = alunoService.buscarPorId(alunoId);
+        CursoEntity.matricular(curso, aluno);
+        return curso;
     }
 
     private static boolean validacao(CursoEntity curso) throws Exception {

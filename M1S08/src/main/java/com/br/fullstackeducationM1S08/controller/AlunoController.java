@@ -1,9 +1,7 @@
 package com.br.fullstackeducationM1S08.controller;
 
 import com.br.fullstackeducationM1S08.entity.AlunoEntity;
-import com.br.fullstackeducationM1S08.entity.CursoEntity;
 import com.br.fullstackeducationM1S08.service.AlunoService;
-import com.br.fullstackeducationM1S08.service.CursoService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,27 +18,32 @@ public class AlunoController {
 
     @GetMapping
     public List<AlunoEntity> get() {
-        return AlunoService.buscarTodos();
+        return alunoService.buscarTodos();
     }
 
     @GetMapping("{id}")
     public AlunoEntity getId(@PathVariable Integer id) throws Exception {
-        return AlunoService.buscarPorId(id);
+        return alunoService.buscarPorId(id);
     }
 
     @PostMapping
-    public AlunoEntity post(@RequestBody AlunoEntity curso) throws Exception {
-        return AlunoService.armazenar(curso);
+    public AlunoEntity post(@RequestBody AlunoEntity aluno) throws Exception {
+        return alunoService.armazenar(aluno);
+    }
+
+    @PostMapping("{id}/add-aluno")
+    public AlunoEntity post(@PathVariable Integer id, @RequestBody AlunoEntity aluno) throws Exception {
+        return alunoService.armazenar(aluno);
     }
 
     @PutMapping
-    public AlunoEntity put(@PathVariable Integer id, @RequestBody AlunoEntity curso) throws Exception {
-        return AlunoService.armazenar(id, curso);
+    public AlunoEntity put(@PathVariable Integer id, @RequestBody AlunoEntity aluno) throws Exception {
+        return alunoService.armazenar(id, aluno);
     }
 
     @DeleteMapping("{id}")
     public boolean delete(@PathVariable Integer id) throws Exception {
-        return AlunoService.deletar(id);
+        return alunoService.deletar(id);
     }
 
 }

@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.Generated;
 import lombok.Getter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,12 +15,10 @@ public class AlunoEntity {
     private static Integer proximoId = 1;
     @Getter
     private static List<AlunoEntity> alunos = new ArrayList<>();
-
     private Integer id;
-
     private String nome;
-
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
+    private List<AlunoEntity> alunosRegistrados = new ArrayList<>();
 
     public static AlunoEntity criar(AlunoEntity aluno) {
         aluno.id = proximoId ++;
